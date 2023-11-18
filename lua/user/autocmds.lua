@@ -2,7 +2,6 @@
 
 -- 输入法切换事件
 -- 引入im-select依赖
--- 提交
 local im_select = require "user.utils.im-select"
 vim.api.nvim_create_augroup("im-select", { clear = true })
 

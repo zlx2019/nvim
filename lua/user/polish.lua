@@ -15,5 +15,5 @@ return  function()
     -- }
     
     -- 引入autocmds
-    require "user.autocmds"
+    -- require "user.autocmds"
   end
