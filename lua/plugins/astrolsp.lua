@@ -1,9 +1,4 @@
--- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
--- AstroLSP allows you to customize the features in AstroNvim's LSP configuration engine
--- Configuration documentation can be found with `:h astrolsp`
--- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
---       as this provides autocomplete and documentation while editing
 
 ---@type LazySpec
 return {
@@ -12,31 +7,32 @@ return {
   opts = {
     -- Configuration table of features provided by AstroLSP
     features = {
+      autoformat = true, -- 保存文件时自动格式化
       codelens = true, -- enable/disable codelens refresh on start
-      inlay_hints = false, -- enable/disable inlay hints on start
+      inlay_hints = true, -- 启用类型提示(nvim >= 0.10才有效)
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
     -- customize lsp formatting options
     formatting = {
       -- control auto formatting on save
-      format_on_save = {
-        enabled = true, -- enable or disable format on save globally
-        allow_filetypes = { -- enable format on save for specified filetypes only
-          -- "go",
-        },
-        ignore_filetypes = { -- disable format on save for specified filetypes
-          -- "python",
-        },
-      },
+      format_on_save = false,
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
       },
-      timeout_ms = 1000, -- default format timeout
+      timeout_ms = 60000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
       --   return true
       -- end
-    },
+        },
+    -- 修改文件名后同步其他引用的地方
+    -- capabilities = {
+    --   workspace = {
+    --     didChangeWatchedFiles = {
+    --       dynamicRegistration = true
+    --     }
+    --   }  
+    -- },
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
